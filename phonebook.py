@@ -14,7 +14,6 @@ def landing():
 @app.route("/phonebook")
 def phonebook():
     query = db.query("select * from phonebook")
-
     return render_template(
     "phonebook.html",
     title="Phonebook entries",
@@ -57,15 +56,27 @@ def update():
         title="Update Entry"
     )
 
-# @app.route("/update", methods=["POST"])
-# def submit_form():
-#     name = request.form.get("name")
-#     phone_number = request.form.get("phone_number")
-#     email = request.form.get("email")
-#     db.update(
-#         "phonebook",
-#
-#     )
+@app.route("/update_entry", methods=["POST"])
+def submit_update_form():
+    id = request.form.get("id")
+    name = request.form.get("name")
+    phone_number = request.form.get("phone_number")
+    email = request.form.get("email")
+    db.update(
+        "phonebook", {
+        "id": id,
+        "name": name,
+        "phone_number": phone_number,
+        "email": email
+        }
+    )
+    return redirect("phonebook")
+
+@app.route("/delete_entry", methods=["POST"])
+def delete_update_form():
+    id = request.form.get("id")
+    db.delete("phonebook", {"id": id})
+    return redirect("phonebook")
 
 
 if __name__ == "__main__":

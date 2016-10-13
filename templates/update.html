@@ -11,34 +11,41 @@
     <button type="submit">Search</button>
     <br>
     <br>
+  </p>
+</form>
+
+<form action="/update_entry" method="POST">
     {% for entry in to_be_updated %}
-    <!-- <ul>
-      <li>{{entry.name}}</li>
-        <ul>
-          <li>{{entry.phone_number}}</li>
-          <li>{{entry.email}}</li>
-        </ul>
-    </ul> -->
+    <input type="hidden" name="id" value="{{entry.id}}">
     <p>
       <lable for="name">{{entry.name}}</lable><br>
-      <input type="text" name="name"><br>
+      <input type="text" name="name" value="{{entry.name}}"><br>
       <button type="submit">Update name</button>
     </p>
     <p>
       <lable for="phone_number">{{entry.phone_number}}</lable><br>
-      <input type="text" name="phone_number"><br>
+      <input type="text" name="phone_number" value="{{entry.phone_number}}"
+      ><br>
       <button type="submit">Update phone number</button>
     </p>
     <p>
       <lable for="email">{{entry.email}}</lable><br>
-      <input type="text" name="email"><br>
+      <input type="text" name="email" value="{{entry.email}}"><br>
       <button type="submit">Update email</button>
     </p>
 
-    {% endfor %}
-  </p>
+  </form>
+  <form action="delete_entry" method="POST">
+    <br>
+    <input type="hidden" name="id" value="{{entry.id}}">
+    <button type="submit">DELETE ENTRY</button>
+    <br>
+    <br>
+  </form>
 
-</form>
+
+    {% endfor %}
+
 
 <a href="/">Home</a><br>
 <a href="/phonebook">List entries</a><br>
