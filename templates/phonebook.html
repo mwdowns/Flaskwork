@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+
+{% block body %}
+<ul>
+  {% for entry in entries_list %}
+  <li>{{entry.name}}</li>
+    <ul>
+      <li>{{entry.phone_number}}</li>
+      <li>{{entry.email}}</li>
+    </ul>
+  {% endfor %}
+</ul>
+
+<a href="/">Home</a><br>
+<a href="/update">Update and entry</a><br>
+<a href="/new_entry">Add an entry</a><br>
+{% endblock %}
